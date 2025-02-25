@@ -1,0 +1,53 @@
+/* Dashboard Main Container */
+.dashboard-container {
+    display: flex;
+    height: 90vh;
+    width: 180vh;
+    
+  }
+  
+  /* Content beside Sidebar */
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+    background: #f4f4f4;
+    margin-left: 250px; /* Same width as sidebar */
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Dashboard Statistics Cards */
+  .dashboard-stats {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 250px;
+  }
+  
+  .stat-icon {
+    font-size: 30px;
+    color: #4caf50;
+  }
+  
+  .stat-card h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .stat-card p {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  

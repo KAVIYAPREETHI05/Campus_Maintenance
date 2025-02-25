@@ -1,0 +1,96 @@
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #222;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+  transition: width 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Collapsed Sidebar */
+.sidebar.closed {
+  width: 80px;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 10px;
+  align-self: flex-start;
+}
+
+/* Sidebar Menu */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Ensures menu items expand to fill space */
+}
+
+/* Sidebar Items */
+.menu li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+/* Sidebar Links */
+.menu li .nav-link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+  border-radius: 5px;
+  transition: background 0.3s;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Sidebar Hover */
+.menu li .nav-link:hover {
+  background-color: #444;
+}
+
+/* Sidebar Icons */
+.menu li .nav-link svg {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Hide text when sidebar is collapsed */
+.sidebar.closed .menu li .nav-link .link-text {
+  display: none;
+}
+
+/* Align icons properly when collapsed */
+.sidebar.closed .menu li .nav-link {
+  justify-content: center;
+}
+
+/* Logout Button */
+.logout {
+  width: 100%; 
+  padding: 15px; /* Reduce padding to bring it up */
+  margin-bottom: 200px; /* Add some space above it */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -70px;
+}
+
+
