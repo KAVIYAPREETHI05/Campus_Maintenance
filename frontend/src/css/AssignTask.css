@@ -1,70 +1,124 @@
 /* Main Container */
 .admin-page {
-  width: 450px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f4f4f4;
+}
+
+/* Card Container */
+.task-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+/* Heading */
+.task-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #333;
 }
 
 /* Form Styling */
 .task-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-/* Input Group for Styling */
+/* Input Group */
 .input-group {
-  display: flex;
-  align-items: center;
-  background: #f8f8f8;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 430px;
+    display: flex;
+    align-items: center;
+    background: #f8f8f8;
+    padding: px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width:380px;
 }
 
-/* Icons Styling */
-.icon {
-  color: #4caf50;
-  font-size: 18px;
-  margin-right: 10px;
+/* Icons */
+.input-group svg {
+    color: #555;
+    font-size: 18px;
+    margin-right: 10px;
 }
 
-/* Input Fields */
-.task-form input,
-.task-form select {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  font-size: 16px;
-  padding: 10px;
-}
-
-/* Worker Name Inputs */
-.worker-names {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Input Fields & Select Dropdown */
+.input-group input,
+.input-group select {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
 }
 
 /* Submit Button */
-button {
-  background: #4caf50;
-  color: white;
-  font-size: 16px;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 445px;
-  transition: background 0.3s ease-in-out;
+.submit-btn {
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 395px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-button:hover {
-  background: #45a049;
+.submit-btn:hover {
+    background: #0056b3;
+}
+.estimated-time-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+    width: 380px;
+  }
+  
+  .estimated-time-container select {
+    width: 80px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background: #fff;
+    cursor: pointer;
+  }
+  
+  .estimated-time-container select:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+  }
+  
+  .estimated-time-container .icon {
+    color: #555;
+  }
+
+  
+
+/* Responsive Design */
+@media (max-width: 450px) {
+    .task-container {
+        width: 90%;
+    }
 }

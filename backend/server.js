@@ -54,6 +54,19 @@ app.get("/api/workers", (req, res) => {
   });
 });
 
+
+// Delete worker
+app.delete("/api/workers/:id", (req, res) => {
+  const workerId = req.params.id;
+  db.query("DELETE FROM workers WHERE id = ?", [workerId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: "Database error: " + err.message });
+    }
+    res.json({ message: "Worker deleted successfully!" });
+  });
+});
+
+
 // Server Port
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
