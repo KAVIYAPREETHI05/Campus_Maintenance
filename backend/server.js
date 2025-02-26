@@ -59,6 +59,43 @@ app.get("/api/workers", (req, res) => {
   });
 });
 
+// Add a worker
+app.post("/api/workers", (req, res) => {
+  const { name, natureOfWork, email, password, experience, mobile } = req.body;
+  db.query(
+    "INSERT INTO workers (name, natureOfWork, email, password, experience, mobile) VALUES (?, ?, ?, ?, ?, ?)",
+    [name, natureOfWork, email, password, experience, mobile],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error adding worker");
+      } else {
+        res.status(201).send("Worker added successfully");
+      }
+    }
+  );
+});
+
+
+
+// Update worker details
+app.put("/api/workers/:id", (req, res) => {
+  const { name, natureOfWork, email, experience, mobile } = req.body;
+  const { id } = req.params;
+  db.query(
+    "UPDATE workers SET name=?, natureOfWork=?, email=?, experience=?, mobile=? WHERE id=?",
+    [name, natureOfWork, email, experience, mobile, id],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error updating worker");
+      } else {
+        res.send("Worker updated successfully");
+      }
+    }
+  );
+});
+
 
 // Delete worker
 app.delete("/api/workers/:id", (req, res) => {

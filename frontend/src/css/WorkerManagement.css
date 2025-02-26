@@ -109,6 +109,8 @@
     background-color: #28a745;
     color: white;
     width:10px;
+    margin-right: 5px;
+    
   }
   
   .delete-btn {
@@ -134,8 +136,11 @@
     .edit-btn, .delete-btn {
       padding: 5px 8px;
       font-size: 12px;
+      width:10px;
     }
   }
+
+  
   
   @media (max-width: 768px) {
     .worker-management-container {
@@ -149,12 +154,36 @@
     .edit-btn, .delete-btn {
       padding: 2px 2px;
       font-size: 5px;
+     
    
     }
+    
   
     .worker-table th, 
     .worker-table td {
       padding: 8px;
     }
+  }
+
+  .edit-modal button {
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    width: 80px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .edit-modal button:first-of-type {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .edit-modal button:last-of-type {
+    background-color: #dc3545;
+    color: white;
   }
   
