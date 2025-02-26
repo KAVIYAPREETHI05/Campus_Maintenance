@@ -28,8 +28,18 @@
   font-size: 24px;
   cursor: pointer;
   padding: 10px;
-  margin-left: 10px;
-  align-self: flex-start;
+  margin-left: 15px;
+  width: 225px;
+  display: flex;  /* Use Flexbox */
+  align-items: center;  /* Align items vertically */
+  justify-content: flex-start; /* Align content to the left */
+  gap: 10px; /* Add spacing between icon and text */
+}
+
+/* If the icon is inside the button, ensure it has a proper size */
+.toggle-btn svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* Sidebar Menu */
@@ -85,8 +95,8 @@
 /* Logout Button */
 .logout {
   width: 100%; 
-  padding: 15px; /* Reduce padding to bring it up */
-  margin-bottom: 200px; /* Add some space above it */
+  padding: 10px; /* Reduce padding to bring it up */
+  margin-bottom: 300px; /* Add some space above it */
   display: flex;
   align-items: center;
   justify-content: center;

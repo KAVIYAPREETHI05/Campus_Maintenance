@@ -20,7 +20,6 @@ const Sidebar = () => {
     { path: "/worker-management", name: "Worker Management", icon: <FaUsers /> },
     { path: "/assign-task", name: "Task Assign", icon: <FaTasks /> },
     { path: "/task-status", name: "Task Status", icon: <FaChartBar /> },
-    { path: "/settings", name: "Settings", icon: <FaCog /> },
   ];
 
   return (
