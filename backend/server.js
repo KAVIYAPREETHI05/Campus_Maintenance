@@ -183,6 +183,103 @@ app.put("/api/update-task-status/:id", (req, res) => {
 });
 
 
+//----------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------
+//user side
+
+// 🟢 API to fetch all new tasks (status = pending)
+app.get("/api/user/new-tasks", (req, res) => {
+  const query = "SELECT * FROM newtask"; // Fetch all new tasks
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching new tasks:", err);
+      res.status(500).json({ error: "Failed to fetch tasks" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// API to move a task from "New Tasks" to "Ongoing Tasks"
+app.put("/api/user/start-task/:id", (req, res) => {
+  const taskId = req.params.id;
+
+  // Step 1: Update the task status in the "tasks" table
+  const updateQuery = "UPDATE tasks SET status = 'ongoing' WHERE id = ?";
+  
+  db.query(updateQuery, [taskId], (err, result) => {
+    if (err) {
+      console.error("Error updating task status:", err);
+      return res.status(500).json({ error: "Failed to update task status" });
+    }
+
+    // Step 2: Remove the task from the "newtask" table
+    const deleteQuery = "DELETE FROM newtask WHERE id = ?";
+    
+    db.query(deleteQuery, [taskId], (err, deleteResult) => {
+      if (err) {
+        console.error("Error deleting task from newtask table:", err);
+        return res.status(500).json({ error: "Failed to delete task" });
+      }
+
+      res.json({ message: "Task moved to ongoing successfully!" });
+    });
+  });
+});
+
+
+// API to get all ongoing tasks
+app.get("/api/user/ongoing-tasks", (req, res) => {
+  const query = "SELECT * FROM tasks WHERE status = 'ongoing'";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching ongoing tasks:", err);
+      res.status(500).json({ error: "Failed to fetch tasks" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+app.put("/api/user/complete-task/:id", (req, res) => {
+  const taskId = req.params.id;
+
+  // Step 1: Move task from "ongoing" to "completed"
+  const updateQuery = "UPDATE tasks SET status = 'completed' WHERE id = ?";
+
+  db.query(updateQuery, [taskId], (err, result) => {
+    if (err) {
+      console.error("Error updating task status:", err);
+      return res.status(500).json({ error: "Failed to complete task" });
+    }
+
+    // Step 2: Fetch updated task details
+    const fetchQuery = "SELECT * FROM tasks WHERE id = ?";
+    db.query(fetchQuery, [taskId], (err, taskResult) => {
+      if (err) {
+        console.error("Error fetching completed task:", err);
+        return res.status(500).json({ error: "Failed to fetch task" });
+      }
+
+      res.json({ message: "Task moved to completed!", completedTask: taskResult[0] });
+    });
+  });
+});
+
+app.get("/api/user/completed-tasks", (req, res) => {
+  const completedQuery = "SELECT * FROM tasks WHERE status = 'completed'";
+
+  db.query(completedQuery, (err, results) => {
+    if (err) {
+      console.error("Error fetching completed tasks:", err);
+      return res.status(500).json({ error: "Failed to fetch completed tasks" });
+    }
+    res.json(results);
+  });
+});
 
 
 

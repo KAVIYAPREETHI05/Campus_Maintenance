@@ -1,0 +1,96 @@
+/* TaskPage.css */
+.task-page {
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow-x: auto;
+  
+    /* Adjust width to avoid overlapping with sidebar */
+    margin-left: 250px; /* Adjust based on sidebar width */
+    width: calc(100% - 260px); /* Sidebar width + some margin */
+}
+
+.task-page h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f9f9f9;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+td {
+    background: #fff;
+}
+
+/* Button Styling */
+.start-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.start-button:hover {
+    background-color: #218838;
+}
+
+.started-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .task-page {
+        margin-left: 200px; /* Reduce margin for smaller screens */
+        width: calc(100% - 210px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .task-page {
+        margin-left: 0; /* Full width on small screens */
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .start-button, .started-button {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}

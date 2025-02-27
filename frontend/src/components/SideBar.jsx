@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FaTasks, FaUserPlus, FaUsers, FaChartBar, FaCog, FaSignOutAlt } from "react-icons/fa";
 import "../../src/css/SideBar.css"; // Import CSS for sidebar
 
-const Sidebar = () => {
+const Sidebar = ({ role }) => {
   // Load sidebar state from localStorage or set default to true
   const [isOpen, setIsOpen] = useState(() => {
     return localStorage.getItem("sidebarOpen") === "false" ? false : true;
@@ -14,13 +14,24 @@ const Sidebar = () => {
     localStorage.setItem("sidebarOpen", isOpen);
   }, [isOpen]);
 
-  const links = [
-    { path: "/dashboard", name: "Dashboard", icon: <FaUsers /> },
-    { path: "/add-worker", name: "Add Worker", icon: <FaUserPlus /> },
-    { path: "/worker-management", name: "Worker Management", icon: <FaUsers /> },
-    { path: "/assign-task", name: "Task Assign", icon: <FaTasks /> },
-    { path: "/task-status", name: "Task Status", icon: <FaChartBar /> },
+  // Define sidebar links based on role
+  const adminLinks = [
+    { path: "/admin/dashboard", name: "Dashboard", icon: <FaUsers /> },
+    { path: "/admin/add-worker", name: "Add Worker", icon: <FaUserPlus /> },
+    { path: "/admin/worker-management", name: "Worker Management", icon: <FaUsers /> },
+    { path: "/admin/assign-task", name: "Task Assign", icon: <FaTasks /> },
+    { path: "/admin/task-status", name: "Task Status", icon: <FaChartBar /> },
   ];
+
+  const userLinks = [
+    { path: "/user/dashboard", name: "Dashboard", icon: <FaUsers /> },
+    { path: "/user/new-tasks", name: "New Tasks", icon: <FaTasks /> },
+    { path: "/user/ongoing-tasks", name: "Ongoing Tasks", icon: <FaChartBar /> },
+    { path: "/user/completed-tasks", name: "Completed Tasks", icon: <FaTasks /> },
+    { path: "/user/contact", name: "Contact", icon: <FaCog /> },
+  ];
+
+  const links = role === "admin" ? adminLinks : userLinks;
 
   return (
     <div className={`sidebar ${isOpen ? "open" : "closed"}`}>

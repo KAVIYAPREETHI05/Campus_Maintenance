@@ -6,8 +6,8 @@ import "../../css/AdminDashboard.css"; // Import CSS for styling
 const AdminDashboard = () => {
   return (
     <div className="dashboard-container">
-      {/* Sidebar Component */}
-      <Sidebar />
+      {/* Sidebar Component with Explicit Role */}
+      <Sidebar role="admin" />
 
       {/* Main Dashboard Content */}
       <div className="dashboard-content">
