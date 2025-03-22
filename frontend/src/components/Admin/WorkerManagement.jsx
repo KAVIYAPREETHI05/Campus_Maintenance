@@ -84,7 +84,7 @@ const WorkerManagement = () => {
                 <td>{worker.mobile}</td>
                 <td>
                   <button className="edit-btn" onClick={() => handleEdit(worker)}>Edit</button>
-                  <button className="delete-btn" onClick={() => handleDelete(worker.id)}>Delete</button>
+                  <button className="delete-btn" onClick={() => handleDelete(worker.id)}>Del</button>
                 </td>
               </tr>
             ))}

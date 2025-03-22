@@ -10,22 +10,15 @@ const UserDashboard = () => {
   });
 
   useEffect(() => {
-    fetchTasks();
+    fetchTaskCounts();
   }, []);
 
-  const fetchTasks = async () => {
+  const fetchTaskCounts = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/tasks/user");
-      const allTasks = response.data;
-
-      // Counting tasks based on status
-      const newTasks = allTasks.filter(task => task.status === "New").length;
-      const ongoingTasks = allTasks.filter(task => task.status === "Ongoing").length;
-      const completedTasks = allTasks.filter(task => task.status === "Completed").length;
-
-      setTaskCounts({ newTasks, ongoingTasks, completedTasks });
+      setTaskCounts(response.data);
     } catch (error) {
-      console.error("Error fetching tasks:", error);
+      console.error("Error fetching task counts:", error);
     }
   };
 

@@ -67,6 +67,8 @@ td {
     cursor: not-allowed;
 }
 
+
+
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
     .task-page {

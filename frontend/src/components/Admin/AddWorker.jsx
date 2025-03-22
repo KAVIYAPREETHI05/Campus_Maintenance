@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import axios
-import { FaUser, FaBriefcase, FaEnvelope, FaLock, FaClock, FaPhone } from "react-icons/fa";
 import "../../css/AddWorker.css";
 
 const AddWorker = () => {
@@ -45,12 +44,10 @@ const AddWorker = () => {
 
       <form onSubmit={handleSubmit} className="worker-form">
         <div className="input-group">
-          <FaUser className="icon" />
           <input type="text" name="name" placeholder="Worker Name" value={worker.name} onChange={handleChange} required />
         </div>
 
         <div className="input-group">
-          <FaBriefcase className="icon" />
           <select name="natureOfWork" value={worker.natureOfWork} onChange={handleChange} required>
             <option value="">Select Nature of Work</option>
             <option value="Plumber">Plumber</option>
@@ -61,22 +58,18 @@ const AddWorker = () => {
         </div>
 
         <div className="input-group">
-          <FaEnvelope className="icon" />
           <input type="email" name="email" placeholder="Email" value={worker.email} onChange={handleChange} required />
         </div>
 
         <div className="input-group">
-          <FaLock className="icon" />
           <input type="password" name="password" placeholder="Password" value={worker.password} onChange={handleChange} required />
         </div>
 
         <div className="input-group">
-          <FaClock className="icon" />
           <input type="number" name="experience" placeholder="Experience (Years)" value={worker.experience} onChange={handleChange} min="0" required />
         </div>
 
         <div className="input-group">
-          <FaPhone className="icon" />
           <input type="tel" name="mobile" placeholder="Mobile Number" value={worker.mobile} onChange={handleChange} pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number" required />
         </div>
 

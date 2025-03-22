@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaUsers, FaTasks, FaChartPie } from "react-icons/fa";
+import axios from "axios";
 import Sidebar from "../SideBar";
 import "../../css/AdminDashboard.css"; // Import CSS for styling
 
 const AdminDashboard = () => {
+  const [dashboardStats, setDashboardStats] = useState({
+    totalWorkers: 0,
+    totalTasks: 0,
+    totalWorks: 0
+  });
+
+  useEffect(() => {
+    fetchDashboardStats();
+  }, []);
+
+  const fetchDashboardStats = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/admin/dashboard");
+      setDashboardStats(response.data);
+    } catch (error) {
+      console.error("Error fetching dashboard stats:", error);
+    }
+  };
+
   return (
     <div className="dashboard-container">
       {/* Sidebar Component with Explicit Role */}
@@ -18,7 +38,7 @@ const AdminDashboard = () => {
             <FaUsers className="stat-icon" />
             <div>
               <h3>Total Workers</h3>
-              <p>120</p>
+              <p>{dashboardStats.totalWorkers}</p>
             </div>
           </div>
 
@@ -26,7 +46,7 @@ const AdminDashboard = () => {
             <FaTasks className="stat-icon" />
             <div>
               <h3>Total Tasks</h3>
-              <p>450</p>
+              <p>{dashboardStats.totalTasks}</p>
             </div>
           </div>
 
@@ -34,7 +54,7 @@ const AdminDashboard = () => {
             <FaChartPie className="stat-icon" />
             <div>
               <h3>Total Works</h3>
-              <p>10</p>
+              <p>{dashboardStats.totalWorks}</p>
             </div>
           </div>
         </div>

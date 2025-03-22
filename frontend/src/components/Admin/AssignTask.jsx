@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FaTasks, FaUserCog, FaUsers, FaClock, FaCheckCircle, FaMapMarkerAlt } from "react-icons/fa";
 import "../../css/AssignTask.css";
 
 const AssignTask = () => {
@@ -48,19 +47,13 @@ const AssignTask = () => {
 
   return (
     <div className="task-container">
-      <h2>
-        <FaTasks className="text-blue-600" /> Assign Task
-      </h2>
-
+      <h2>Assign Task</h2>
       <form onSubmit={handleSubmit} className="task-form">
         <div className="input-group">
-          <FaTasks />
-          <input type="text" name="description" placeholder="Task Description"
-            value={task.description} onChange={handleChange} required />
+          <input type="text" name="description" placeholder="Task Description" value={task.description} onChange={handleChange} required />
         </div>
 
         <div className="input-group">
-          <FaUserCog />
           <select name="natureOfWork" value={task.natureOfWork} onChange={handleChange} required>
             <option value="">Select Nature of Work</option>
             <option value="Plumber">Plumber</option>
@@ -71,7 +64,6 @@ const AssignTask = () => {
         </div>
 
         <div className="input-group">
-          <FaUsers />
           <select name="numberOfWorkers" value={task.numberOfWorkers} onChange={handleNumberOfWorkersChange} required>
             {[...Array(5).keys()].map((num) => (
               <option key={num + 1} value={num + 1}>
@@ -83,15 +75,11 @@ const AssignTask = () => {
 
         {task.workers.map((worker, index) => (
           <div key={index} className="input-group">
-            <FaUserCog />
-            <input type="text" placeholder={`Worker ${index + 1} Name`}
-              value={worker} onChange={(e) => handleWorkerChange(index, e)} required />
+            <input type="text" placeholder={`Worker ${index + 1} Name`} value={worker} onChange={(e) => handleWorkerChange(index, e)} required />
           </div>
         ))}
 
         <div className="estimated-time-container">
-          <FaClock className="icon" />
-
           <select name="estimatedHours" value={task.estimatedHours} onChange={handleChange} required>
             <option value="">Hours</option>
             {[...Array(24).keys()].map((hour) => (
@@ -108,14 +96,10 @@ const AssignTask = () => {
         </div>
 
         <div className="input-group">
-          <FaMapMarkerAlt />
-          <input type="text" name="location" placeholder="Task Location"
-            value={task.location} onChange={handleChange} required />
+          <input type="text" name="location" placeholder="Task Location" value={task.location} onChange={handleChange} required />
         </div>
 
-        <button type="submit" className="submit-btn">
-          <FaCheckCircle /> Assign Task
-        </button>
+        <button type="submit" className="submit-btn">Assign Task</button>
       </form>
     </div>
   );

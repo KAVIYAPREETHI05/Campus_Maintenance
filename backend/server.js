@@ -282,8 +282,100 @@ app.get("/api/user/completed-tasks", (req, res) => {
 });
 
 
+// Fetch All Tasks
+app.get("/api/user/tasks", (req, res) => {
+  const sql = "SELECT id, description FROM tasks";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error fetching tasks:", err);
+      return res.status(500).json({ error: "Failed to fetch tasks" });
+    }
+    res.json(results);
+  });
+});
+
+// Fetch Workers Assigned to a Task
+app.get("/api/user/coworkers/:taskId", (req, res) => {
+  const { taskId } = req.params;
+  const sql = "SELECT workers FROM tasks WHERE id = ?";
+  
+  db.query(sql, [taskId], (err, results) => {
+    if (err) {
+      console.error("Error fetching coworkers:", err);
+      return res.status(500).json({ error: "Failed to fetch coworkers" });
+    }
+    
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    // Parsing JSON string stored in `workers` column
+    const workerNames = JSON.parse(results[0].workers);
+    res.json(workerNames.map(name => ({ name })));
+  });
+});
+
+// Fetch Worker Details (ID, Mobile) by Worker Name
+app.get("/api/user/worker-details/:workerName", (req, res) => {
+  const { workerName } = req.params;
+  const sql = "SELECT id, mobile FROM workers WHERE name = ?";
+  
+  db.query(sql, [workerName], (err, results) => {
+    if (err) {
+      console.error("Error fetching worker details:", err);
+      return res.status(500).json({ error: "Failed to fetch worker details" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Worker not found" });
+    }
+
+    res.json(results[0]); // Return worker ID and mobile number
+  });
+});
+
+//-----------------------------------------------------------------------------------------------------
+//userpage count
+
+app.get("/api/tasks/user", (req, res) => {
+  const query = `
+    SELECT 
+      SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS newTasks,
+      SUM(CASE WHEN status = 'Ongoing' THEN 1 ELSE 0 END) AS ongoingTasks,
+      SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) AS completedTasks
+    FROM tasks;
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error fetching task counts:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.json(result[0]); // Return counts directly
+    }
+  });
+});
 
 
+//admin page count
+
+app.get("/api/admin/dashboard", (req, res) => {
+  const query = `
+    SELECT 
+      (SELECT COUNT(*) FROM workers) AS totalWorkers,
+      (SELECT COUNT(*) FROM tasks) AS totalTasks,
+      (SELECT COUNT(DISTINCT natureOfWork) FROM workers) AS totalWorks;
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error fetching admin dashboard counts:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.json(result[0]); // Return counts directly
+    }
+  });
+});
 
 
 
